@@ -65,7 +65,7 @@ function printPath(path) {
 		var dir = e < 0 ? 'left' : 'right';
 		directions.push(dir);
 	});
-	console.log('New path: ' + directions);
+	//console.log('New path: ' + directions);
 }
 
 var Chip = function(boardId, speed) {
@@ -122,12 +122,25 @@ Chip.prototype.animateTo = function(offset) {
 	});
 };
 
+var id = 1;
 $(document).ready(function () {
 	$(document).keydown(function (e) {
 		e = e || window.event;
 		if (e.keyCode === 13) {
 			var chip = new Chip('plinko-board', 500);
 			chip.start();
+		} else if (e.keyCode === 79) {
+            // toggle faucet
+            if ($('#faucet').text() == 'on') {
+                $('#faucet').text('off');
+                id = window.setInterval(function() {
+			        var chip = new Chip('plinko-board', 500);
+			        chip.start();
+                }, 30);
+           } else {
+                $('#faucet').text('on');
+                window.clearInterval(id);
+            }
 		}
 	});
 });

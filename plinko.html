@@ -18,12 +18,49 @@
             background-color: gray;
             background-image: url('board.png');
         }
+        ul.buckets, ul.percents {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            padding: 0;
+            margin: 5px 0;
+        }
+        ul.buckets {
+            bottom: -2em;
+            border-bottom: 1px solid black;
+        }
+        ul.percents {
+            bottom: -3.5em;
+        }
+        ul.buckets li, ul.percents li {
+            list-style: none;
+            float: left;
+            display: block;
+            margin-left: 10.45%;
+            width: 31px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <h3>Press enter to play</h3>
-    <div id="plinko-board"></div>
-    
+    <div id="plinko-board">
+        <ul class="buckets">
+            <li id="one">0</li>
+            <li id="two">0</li>
+            <li id="three">0</li>
+            <li id="four">0</li>
+            <li id="five">0</li>
+        </ul>
+        <ul class="percents">
+            <li id="one_percent">0.00%</li>
+            <li id="two_percent">0.00%</li>
+            <li id="three_percent">0.00%</li>
+            <li id="four_percent">0.00%</li>
+            <li id="five_percent">0.00%</li>
+        </ul>
+    </div>
+
     <script src="jquery.js"></script>
     <script src="plinko.js"></script>
 

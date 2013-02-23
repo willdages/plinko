@@ -2,29 +2,29 @@
 
 (function () {
     'use strict';
-    /*global getPath getRandom*/    
+    /*global getRandom buckets*/
     describe('The Random number generator', function () {
         it('should return a number', function () {
             var random = getRandom();
             expect(random).to.be.a('number');
         });
-        it('should always be 0 or 1', function () {
+        it('should always be -1 or 1', function () {
             var i = 0;
-            var withinRange = true;
+            var valid = true;
             while (i < 100) {
                 var r = getRandom();
-                if ((r < 0) || (r > 1)) {
-                    withinRange = false;
+                if (r !== -1 && r !== 1) {
+                    valid = false;
                 }
                 i++;
             }
             /*jshint expr:true */
-            expect(withinRange).to.be.true;
+            expect(valid).to.be.true;
         });
     });
 
     /*global Chip*/
-    var chip = new Chip('plinko-board');
+    var chip = new Chip('plinko-board', 0);
 
     describe('The game', function () {
 
@@ -44,17 +44,15 @@
             expect(chip.el).to.be.defined;
         });
 
-        it('should be centered at the top of the board', function () {
-            var topOfBoard = {
-                x: chip.board.width() / 2,
-                y: 0
-            };
-            expect(JSON.stringify(topOfBoard)).to.equal(JSON.stringify(chip.location));
-        });
+        chip.start();
 
-        it('should have a path to follow', function () {
+        it('should have a path to follow once it has started', function () {
             expect(chip.path).to.be.an('array');
             expect(chip.path).to.have.length(4);
+        });
+
+        it('should update the bucket numbers once finished', function () {
+            expect(buckets.drops).to.equal(1);
         });
     });
 })();

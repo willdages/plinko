@@ -29,9 +29,9 @@ function getRandom() {
 	return random === 0 ? -1 : 1;
 }
 
-function getBucket(path) {
+function getBucket(chip) {
 	var total = 0;
-	$.each(path, function(i, e) {
+	$.each(chip.path, function(i, e) {
 		total += e;
 	});
 	switch(total) {
@@ -55,6 +55,7 @@ function getBucket(path) {
 	}
 	buckets.drops++;
 	updateBuckets();
+	$(chip.el).remove();
 }
 
 function printPath(path) {
@@ -101,7 +102,7 @@ Chip.prototype.nextStep = function() {
 			y: 2
 		});
 	} else {
-		getBucket(self.path);
+		getBucket(self);
 	}
 };
 
@@ -126,7 +127,8 @@ var id = 1;
 $(document).ready(function () {
 	$(document).keydown(function (e) {
 		e = e || window.event;
-		if (e.keyCode === 13) {
+		e.preventDefault();
+		if (e.keyCode === 32) {
 			var chip = new Chip('plinko-board', 500);
 			chip.start();
 		} else if (e.keyCode === 79) {

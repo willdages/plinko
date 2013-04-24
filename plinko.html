@@ -3,47 +3,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Plinko</title>
-    <style type="text/css">
-        div.chip {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 5px;
-            background-color: blue;
-        }
-        #plinko-board {
-            position: relative;
-            width: 400px;
-            height: 200px;
-            background-color: gray;
-            background-image: url('board.png');
-        }
-        ul.buckets, ul.percents {
-            position: absolute;
-            left: 0;
-            width: 100%;
-            padding: 0;
-            margin: 5px 0;
-        }
-        ul.buckets {
-            bottom: -2em;
-            border-bottom: 1px solid black;
-        }
-        ul.percents {
-            bottom: -3.5em;
-        }
-        ul.buckets li, ul.percents li {
-            list-style: none;
-            float: left;
-            display: block;
-            margin-left: 10.45%;
-            width: 31px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h3>Press enter to drop 1 chip, 'o' to turn faucet <span id='faucet'>on</span></h3>
+    <h3>Press <strong><code>Space</code></strong> to drop 1 chip, <strong><code>o</strong></code> to turn faucet <span id='faucet'>on</span></h3>
     <div id="plinko-board">
         <ul class="buckets">
             <li id="one">0</li>
